@@ -1,36 +1,110 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Budgetly
 
-## Getting Started
+Budgetly is a personal finance tracker for managing everyday money in one place. It provides a clean dashboard for tracking income, expenses, monthly budgets, savings goals, debts, and financial reports.
 
-First, run the development server:
+## Features
+
+- Email authentication with Supabase
+- Dashboard with available balance, monthly income, expenses, and savings
+- Daily spending overview based on real transaction data
+- Income and expense transaction management
+- Monthly budgets by category with progress tracking
+- Savings goals and contribution tracking
+- Debt tracking with payment progress
+- Debt payments recorded automatically as expenses
+- Financial reports with monthly trends and category breakdowns
+- Account settings with EUR, ALL, USD, and GBP display currencies
+- User-specific data protected with Supabase Row Level Security
+- Production deployment on Vercel
+
+> Changing the account currency changes how monetary values are displayed. Existing amounts are not automatically converted between currencies.
+
+## Tech Stack
+
+- Next.js 16
+- React 19
+- TypeScript
+- Tailwind CSS 4
+- Supabase Auth & PostgreSQL
+- Lucide React
+- Vercel
+
+## Pages
+
+| Route | Purpose |
+| --- | --- |
+| `/` | Dashboard and monthly overview |
+| `/transactions` | Income and expense management |
+| `/budgets` | Monthly category budgets |
+| `/savings` | Savings goals |
+| `/debts` | Debt balances and payments |
+| `/reports` | Financial reports and trends |
+| `/settings` | Profile and currency settings |
+| `/login` | Sign in |
+| `/register` | Create an account |
+
+## Local Setup
+
+Clone the repository and install the dependencies:
+
+```bash
+git clone https://github.com/musashehi/budget-tracker.git
+cd budget-tracker
+npm install
+```
+
+Create a `.env.local` file in the project root:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_publishable_or_anon_key
+```
+
+Never commit `.env.local` or a Supabase service-role key.
+
+Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Production Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## Deployment
 
-To learn more about Next.js, take a look at the following resources:
+The project is configured for deployment on Vercel. Add the same two public Supabase environment variables to the Vercel project before deploying.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Commits pushed to the connected `main` branch can be deployed automatically by Vercel.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project Structure
 
-## Deploy on Vercel
+```text
+src/
+├── app/
+│   ├── budgets/
+│   ├── debts/
+│   ├── login/
+│   ├── register/
+│   ├── reports/
+│   ├── savings/
+│   ├── settings/
+│   └── transactions/
+├── components/
+│   ├── AddTransactionModal.tsx
+│   ├── AuthGuard.tsx
+│   └── Sidebar.tsx
+└── lib/
+    ├── currency.ts
+    └── supabase.ts
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Author
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Developed by [musashehi](https://github.com/musashehi).
